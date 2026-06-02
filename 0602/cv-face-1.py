@@ -2,14 +2,15 @@ import cv2
 
 # 載入模型
 # face_cascades = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-face_cascades = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+# face_cascades = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+face_cascades = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
 img = cv2.imread("../images/man.png")
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-faces = face_cascades.detectMultiScale(img_gray, 1.2, 8,minSize=(100,100))
+faces = face_cascades.detectMultiScale(img_gray, 1.1, 10, minSize=(0,0))
 
-# print(faces)
+print(faces)
 
 for (x,y,w,h) in faces:
     print(x,y,w,h)
