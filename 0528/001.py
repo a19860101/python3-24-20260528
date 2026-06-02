@@ -1,7 +1,7 @@
 import cv2
 import sys
 
-img = cv2.imread('cat.jpg')
+img = cv2.imread('../images/cat.jpg')
 
 if img is None:
     print('picture is none')
