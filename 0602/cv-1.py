@@ -1,6 +1,6 @@
 import cv2
 
-img = cv2.imread('../ images/cat.jpg', cv2.IMREAD_REDUCED_COLOR_4)
+img = cv2.imread('../images/cat.jpg', cv2.IMREAD_REDUCED_COLOR_4)
 # 1,cv2.IMREAD_COLOR 載入一般圖片，忽略透明
 # 0,cv2.IMREAD_GRAYSCALE 載入灰階圖片
 # -1,cv2.IMREAD_UNCHANGED 載入包含alpha的圖片
