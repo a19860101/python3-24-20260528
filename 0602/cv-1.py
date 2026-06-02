@@ -31,6 +31,22 @@ cv2.imwrite('cat_3.webp', img, [cv2.IMWRITE_WEBP_QUALITY, 1])
 cv2.imwrite('cat_4.webp', img, [cv2.IMWRITE_WEBP_QUALITY, 101])
 
 
+# JPEG格式
+# 參數常數：cv2.IMWRITE_JPEG_QUALITY
+# 數值範圍：0 到 100（數字越大畫質越好，檔案越大）。
+# 預設值：95。
+
+# PNG格式
+# 參數常數：cv2.IMWRITE_PNG_COMPRESSION
+# 數值範圍：0 到 9（數字越大檔案越小，但存檔花費的時間越久）。
+# 預設值：3。
+
+# WEBP
+# 參數常數：cv2.IMWRITE_WEBP_QUALITY
+# 數值範圍：1 到 100有損壓縮，101以上無損壓縮
+# 預設值：無損壓縮。
+
+
 cv2.waitKey(0)
 # 0表示程式會停在這裡，直到按下鍵盤上的任意鍵，才會繼續執行下一行。
 # 100則為100毫秒，表示視窗會停留100毫秒（0.1秒）
