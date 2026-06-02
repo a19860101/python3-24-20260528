@@ -1,6 +1,6 @@
 import cv2
 
-img = cv2.imread('../ images/cat.jpg', cv2.IMREAD_REDUCED_GRAYSCALE_4)
+img = cv2.imread('../ images/cat.jpg', cv2.IMREAD_REDUCED_COLOR_4)
 # 1,cv2.IMREAD_COLOR 載入一般圖片，忽略透明
 # 0,cv2.IMREAD_GRAYSCALE 載入灰階圖片
 # -1,cv2.IMREAD_UNCHANGED 載入包含alpha的圖片
@@ -17,9 +17,18 @@ img = cv2.imread('../ images/cat.jpg', cv2.IMREAD_REDUCED_GRAYSCALE_4)
 
 cv2.imshow('cat', img)
 
-cv2.imwrite('cat_gray.jpg', img)
-cv2.imwrite('cat_gray.png', img)
-cv2.imwrite('cat_gray.webp', img)
+cv2.imwrite('cat_1.jpg', img)
+cv2.imwrite('cat_2.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 100])
+cv2.imwrite('cat_3.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 1])f
+
+cv2.imwrite('cat_1.png', img)
+cv2.imwrite('cat_2.png', img, [cv2.IMWRITE_PNG_COMPRESSION, 0])
+cv2.imwrite('cat_3.png', img, [cv2.IMWRITE_PNG_COMPRESSION, 9])
+
+cv2.imwrite('cat_1.webp', img)
+cv2.imwrite('cat_2.webp', img, [cv2.IMWRITE_WEBP_QUALITY, 100])
+cv2.imwrite('cat_3.webp', img, [cv2.IMWRITE_WEBP_QUALITY, 1])
+cv2.imwrite('cat_4.webp', img, [cv2.IMWRITE_WEBP_QUALITY, 101])
 
 
 cv2.waitKey(0)
