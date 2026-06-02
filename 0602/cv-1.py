@@ -19,7 +19,7 @@ cv2.imshow('cat', img)
 
 cv2.imwrite('cat_1.jpg', img)
 cv2.imwrite('cat_2.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 100])
-cv2.imwrite('cat_3.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 1])f
+cv2.imwrite('cat_3.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 1])
 
 cv2.imwrite('cat_1.png', img)
 cv2.imwrite('cat_2.png', img, [cv2.IMWRITE_PNG_COMPRESSION, 0])
