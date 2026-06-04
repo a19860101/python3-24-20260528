@@ -10,6 +10,7 @@ while True:
     bg = np.zeros(frame.shape, np.uint8)
     small_frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
 
+    # 方法一：取得原始視訊寬高
     # width = int(cap.get(3))
     # height = int(cap.get(4))
     #
@@ -18,6 +19,7 @@ while True:
     # bg[height // 2:,:width // 2] = small_frame
     # bg[height // 2:,width // 2:] = small_frame
 
+    # 方法一：取得縮小後視訊寬高
     # h,w = small_frame.shape[:2]
     h,w,c = small_frame.shape
     bg[:h,:w] = small_frame
