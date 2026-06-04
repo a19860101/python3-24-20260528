@@ -10,7 +10,20 @@ while True:
     bg = np.zeros(frame.shape, np.uint8)
     small_frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
 
-    bg[:240, :320] = small_frame
+    # width = int(cap.get(3))
+    # height = int(cap.get(4))
+    #
+    # bg[:height // 2,:width // 2] = small_frame
+    # bg[:height // 2,width // 2:] = cv2.flip(small_frame,1)
+    # bg[height // 2:,:width // 2] = small_frame
+    # bg[height // 2:,width // 2:] = small_frame
+
+    # h,w = small_frame.shape[:2]
+    h,w,c = small_frame.shape
+    bg[:h,:w] = small_frame
+    bg[:h,w:] = small_frame
+    bg[h:,:w] = small_frame
+    bg[h:,w:] = small_frame
 
     cv2.imshow('frame', bg)
 
