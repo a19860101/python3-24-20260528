@@ -10,8 +10,8 @@ while True:
     # 邊緣檢測
     # frame = cv2.Canny(frame,100,10)
 
-    #
-    frame = cv2.applyColorMap(frame, cv2.COLORMAP_TWILIGHT_SHIFTED)
+    # 漸層對應
+    # frame = cv2.applyColorMap(frame, cv2.COLORMAP_TWILIGHT_SHIFTED)
     # cv2.COLORMAP_JET
     # cv2.COLORMAP_HOT
     # cv2.COLORMAP_SPRING
@@ -34,6 +34,14 @@ while True:
     # cv2.COLORMAP_TWILIGHT_SHIFTED
     # cv2.COLORMAP_TURBO
     # cv2.COLORMAP_VIRIDIS
+
+    # 高斯模糊
+    # frame = cv2.GaussianBlur(frame,(55,55),0)
+
+    edge = cv2.Canny(frame, 100, 10)
+    blur_edge = cv2.GaussianBlur(edge, (55,55), 0)
+    frame = cv2.applyColorMap(blur_edge, cv2.COLORMAP_JET)
+
 
     cv2.imshow('frame', frame)
 
