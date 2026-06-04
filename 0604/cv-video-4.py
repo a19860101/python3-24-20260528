@@ -38,12 +38,19 @@ while True:
     # 高斯模糊
     # frame = cv2.GaussianBlur(frame,(55,55),0)
 
-    edge = cv2.Canny(frame, 100, 10)
-    blur_edge = cv2.GaussianBlur(edge, (55,55), 0)
-    frame = cv2.applyColorMap(blur_edge, cv2.COLORMAP_JET)
+    # 綜合應用
+    # edge = cv2.Canny(frame, 100, 10)
+    # blur_edge = cv2.GaussianBlur(edge, (55,55), 0)
+    # frame = cv2.applyColorMap(blur_edge, cv2.COLORMAP_JET)
 
+    # 馬賽克
+    h,w = frame.shape[:2]
+    frame = cv2.resize(frame, (w//20,h//20))
+    frame = cv2.resize(frame, (w,h), interpolation = cv2.INTER_NEAREST)
+    # frame = cv2.resize(frame, (w,h))
 
     cv2.imshow('frame', frame)
+
 
     if cv2.waitKey(1) == ord('q'):
         break
