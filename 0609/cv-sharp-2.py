@@ -8,7 +8,7 @@ sharp = cv2.addWeighted(img, 1.5, blur, -0.5, 0)
 
 sharp = cv2.Canny(sharp, 100, 200)
 
-# alpha * 原圖 - beta * 模糊
+# 公式： 原圖 * 1.5 - 模糊圖 * 0.5
 
 cv2.imshow("s1", sharp)
 
