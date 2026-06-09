@@ -20,6 +20,7 @@ kernel3 = np.array([
     [-1, -2, -1]
 ])
 
+
 sharp_img = cv2.filter2D(img, -1, kernel)
 sharp_img2 = cv2.filter2D(img, -1, kernel2)
 sharp_img3 = cv2.filter2D(img, -1, kernel3)
