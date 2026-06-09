@@ -1,16 +1,21 @@
 import cv2
 
 img = cv2.imread('../images/man.png')
-
+# 均值濾波
 # img = cv2.blur(img, (30, 30))
 
-# img = cv2.GaussianBlur(img, (111, 111), 0)
+# 高斯模糊
+img = cv2.GaussianBlur(img, (111, 111), 0)
 
+# 中值濾波（消除胡椒鹽雜訊）
 # img = cv2.medianBlur(img, 51)
 
-# img = cv2.bilateralFilter(img, 11, 17, 17)
+# 雙邊濾波（美肌）
+img1 = cv2.bilateralFilter(img, 1, 20, 20)
+img2 = cv2.bilateralFilter(img, 10, 50, 20)
 
-cv2.imshow('img', img)
+cv2.imshow('img1', img1)
+cv2.imshow('img2', img2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
