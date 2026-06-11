@@ -15,7 +15,7 @@ while True:
     if not ret:
         break
 
-    result = model(frame, stream=True)
+    result = model(frame, stream=True,conf=0.4,classes=[67])
 
     for r in result:
         plot_frame = r.plot()
