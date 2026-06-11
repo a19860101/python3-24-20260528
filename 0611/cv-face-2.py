@@ -10,6 +10,9 @@ while True:
 
     for (x, y, w, h) in faces:
         print(x, y, w, h)
+        roi = frame[y:y+h, x:x+w]
+        # range of interest
+        frame[y:y+h, x:x+w] = cv2.GaussianBlur(roi, (55, 55), 0)
 
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
