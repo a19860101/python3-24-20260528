@@ -11,8 +11,24 @@ while True:
     for (x, y, w, h) in faces:
         print(x, y, w, h)
         roi = frame[y:y+h, x:x+w]
-        # range of interest
-        frame[y:y+h, x:x+w] = cv2.GaussianBlur(roi, (55, 55), 0)
+        # region of interest
+
+        # 高斯模糊
+        # frame[y:y+h, x:x+w] = cv2.GaussianBlur(roi, (55, 55), 0)
+
+        # 美顏
+        # frame[y:y + h, x:x + w] = cv2.bilateralFilter(roi, 5, 15, 15)
+
+        # 漸層對應
+        # frame[y:y + h, x:x + w] = cv2.applyColorMap(roi, cv2.COLORMAP_JET)
+
+        # 馬賽克
+        height,width = roi.shape[:2]
+        small = cv2.resize(roi, (width//20, height//20))
+        mosaic = cv2.resize(small, (width, height),interpolation=cv2.INTER_NEAREST)
+        frame[y:y+h, x:x+w] = mosaic
+
+
 
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
