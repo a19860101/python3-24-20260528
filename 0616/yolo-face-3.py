@@ -4,7 +4,7 @@ import datetime,time
 
 model = YOLO('yolov8n.pt')
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('../video.mp4')
 
 if not cap.isOpened():
     print('無法開啟攝影機........')
@@ -33,13 +33,13 @@ while True:
 
     duration = current_time - last_capture_time
 
-    if duration >= CD:
+    if person_detected:
+        cv2.putText(plot_frame,'Detected',(20,50),cv2.FONT_HERSHEY_SIMPLEX,0.4,(0,255,0),1)
         time_str = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         filename= time_str+'.jpg'
-        if person_detected:
+        if duration >= CD:
             cv2.imwrite(filename,frame)
-
-        last_capture_time = current_time
+            last_capture_time = current_time
 
     cv2.imshow('YOLO v8', plot_frame)
 
