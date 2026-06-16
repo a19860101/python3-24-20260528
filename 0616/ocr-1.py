@@ -1,8 +1,9 @@
 import easyocr
 
 reader = easyocr.Reader(['ch_tra','en'], gpu=True)
-result = reader.readtext('img.png', paragraph=True)
+result = reader.readtext('img.png', paragraph=True,detail=0)
 
 # print(result)
-for item in result:
-    print(item[1])
+with open('output.txt','w',encoding='utf-8') as f:
+    for item in result:
+        f.write(item)
