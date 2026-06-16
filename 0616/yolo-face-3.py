@@ -1,5 +1,6 @@
 import cv2
 from ultralytics import YOLO
+import datetime
 
 model = YOLO('yolov8n.pt')
 
@@ -23,6 +24,12 @@ while True:
         # print(f'box:{r.boxes}')
         if len(r.boxes) > 0:
             person_detected = True
+
+    time_str = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    filename= time_str+'.jpg'
+
+    if person_detected:
+        cv2.imwrite(filename,frame)
 
     cv2.imshow('YOLO v8', plot_frame)
 
