@@ -1,6 +1,6 @@
 import cv2
 from ultralytics import YOLO
-import datetime
+import datetime,time
 
 model = YOLO('yolov8n.pt')
 
@@ -10,6 +10,10 @@ if not cap.isOpened():
     print('無法開啟攝影機........')
     exit()
 
+# 每隔幾秒截圖
+CD = 5
+last_capture_time = 0
+
 while True:
     ret, frame = cap.read()
 
@@ -18,6 +22,8 @@ while True:
 
     result = model(frame, stream=True,conf=0.4,classes=[0])
 
+    current_time = time.time()
+
     person_detected = False
     for r in result:
         plot_frame = r.plot()
@@ -25,11 +31,15 @@ while True:
         if len(r.boxes) > 0:
             person_detected = True
 
-    time_str = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    filename= time_str+'.jpg'
+    duration = current_time - last_capture_time
 
-    if person_detected:
-        cv2.imwrite(filename,frame)
+    if duration >= CD:
+        time_str = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        filename= time_str+'.jpg'
+        if person_detected:
+            cv2.imwrite(filename,frame)
+
+        last_capture_time = current_time
 
     cv2.imshow('YOLO v8', plot_frame)
 
