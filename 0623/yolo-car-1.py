@@ -6,7 +6,7 @@ model = YOLO("best.pt")
 
 reader = easyocr.Reader(['en'], gpu=True)
 
-img = cv2.imread("../images/car-1.jpg")
+img = cv2.imread("../images/car-3.jpg")
 
 H, W, _ = img.shape
 
@@ -29,7 +29,7 @@ for result in results:
         plate = img[y1:y2,x1:x2]
 
         # 放大圖片
-        plate_resized = cv2.resize(plate,None,fx=2,fy=2, interpolation=cv2.INTER_CUBIC)
+        plate_resized = cv2.resize(plate,None,fx=2.5,fy=2.5, interpolation=cv2.INTER_CUBIC)
         # 轉灰階
         plate_gray = cv2.cvtColor(plate_resized,cv2.COLOR_BGR2GRAY)
         # 雙邊濾波
@@ -37,7 +37,7 @@ for result in results:
 
         #銳利化
         plate_blur = cv2.GaussianBlur(plate_gray,(3,3),0)
-        plate_sharpened = cv2.addWeighted(plate_blur,1.3,plate_gray,-0.3,0)
+        plate_sharpened = cv2.addWeighted(plate_blur,1.8,plate_gray,-0.8,0)
 
         # 臨界值 / 二值化
         binary_plate = cv2.adaptiveThreshold(
@@ -52,7 +52,7 @@ for result in results:
         cv2.imshow("plate",binary_plate)
         cv2.waitKey(1)
 
-        text = reader.readtext(plate_blur, allowlist=allow_list)
+        text = reader.readtext(binary_plate, allowlist=allow_list)
         print(text)
 
         if text:
