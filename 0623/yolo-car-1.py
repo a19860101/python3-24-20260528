@@ -6,12 +6,12 @@ model = YOLO("best.pt")
 
 reader = easyocr.Reader(['en'], gpu=True)
 
-img = cv2.imread("../images/car-3.jpg")
+img = cv2.imread("../images/car-1.jpg")
 
 H, W, _ = img.shape
 
 results = model(img)
-allow_list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'
+allow_list = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789-'
 
 for result in results:
     # print(result.boxes)
@@ -33,26 +33,26 @@ for result in results:
         # 轉灰階
         plate_gray = cv2.cvtColor(plate_resized,cv2.COLOR_BGR2GRAY)
         # 雙邊濾波
-        plate_blur = cv2.bilateralFilter(plate_gray,15,15,15)
+        # plate_blur = cv2.bilateralFilter(plate_gray,15,15,15)
 
         #銳利化
-        # plate_blur = cv2.GaussianBlur(plate_gray,(9,9),0)
-        # plate_sharpened = cv2.addWeighted(plate_blur,1.5,plate_gray,-0.5,0)
+        plate_blur = cv2.GaussianBlur(plate_gray,(3,3),0)
+        plate_sharpened = cv2.addWeighted(plate_blur,1.3,plate_gray,-0.3,0)
 
         # 臨界值 / 二值化
         binary_plate = cv2.adaptiveThreshold(
-            plate_blur,
+            plate_sharpened,
             255,
             cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
             cv2.THRESH_BINARY,
-            11,
+            15,
             5
         )
 
         cv2.imshow("plate",binary_plate)
         cv2.waitKey(1)
 
-        text = reader.readtext(plate_blur)
+        text = reader.readtext(plate_blur, allowlist=allow_list)
         print(text)
 
         if text:
