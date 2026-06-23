@@ -6,7 +6,7 @@ model = YOLO("best.pt")
 
 reader = easyocr.Reader(['en'], gpu=True)
 
-img = cv2.imread("../images/car-2.jpg")
+img = cv2.imread("../images/car-1.jpg")
 
 H, W, _ = img.shape
 
@@ -27,7 +27,16 @@ for result in results:
 
         plate = img[y1:y2,x1:x2]
 
-        text = reader.readtext(plate)
+        # 放大圖片
+        plate_resized = cv2.resize(plate,None,fx=2,fy=2, interpolation=cv2.INTER_CUBIC)
+        # 轉灰階
+        plate_gray = cv2.cvtColor(plate_resized,cv2.COLOR_BGR2GRAY)
+        # 雙邊濾波
+        plate_blur = cv2.bilateralFilter(plate_gray,15,15,15)
+
+        cv2.imshow("plate",plate_blur)
+        cv2.waitKey(1)
+        text = reader.readtext(plate_blur)
         print(text)
 
         if text:
