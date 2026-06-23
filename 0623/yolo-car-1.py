@@ -6,11 +6,12 @@ model = YOLO("best.pt")
 
 reader = easyocr.Reader(['en'], gpu=True)
 
-img = cv2.imread("../images/car-1.jpg")
+img = cv2.imread("../images/car-3.jpg")
 
 H, W, _ = img.shape
 
 results = model(img)
+allow_list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'
 
 for result in results:
     # print(result.boxes)
@@ -34,8 +35,23 @@ for result in results:
         # 雙邊濾波
         plate_blur = cv2.bilateralFilter(plate_gray,15,15,15)
 
-        cv2.imshow("plate",plate_blur)
+        #銳利化
+        # plate_blur = cv2.GaussianBlur(plate_gray,(9,9),0)
+        # plate_sharpened = cv2.addWeighted(plate_blur,1.5,plate_gray,-0.5,0)
+
+        # 臨界值 / 二值化
+        binary_plate = cv2.adaptiveThreshold(
+            plate_blur,
+            255,
+            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+            cv2.THRESH_BINARY,
+            11,
+            5
+        )
+
+        cv2.imshow("plate",binary_plate)
         cv2.waitKey(1)
+
         text = reader.readtext(plate_blur)
         print(text)
 
