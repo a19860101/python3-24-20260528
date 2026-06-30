@@ -1,4 +1,5 @@
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 
 X = [
     [32,0],
@@ -26,8 +27,8 @@ y = [
 ]
 
 # 建立模型
-model = DecisionTreeClassifier()
-
+# model = DecisionTreeClassifier()
+model = KNeighborsClassifier()
 # 訓練
 model.fit(X,y)
 
