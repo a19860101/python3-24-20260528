@@ -1,6 +1,7 @@
 from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 
 X = [
     [32,0],[30,1],[30,0],[28,0],[26,1],[25,1],[22,1],[20,0],[18,0],[16,0],
@@ -8,16 +9,17 @@ X = [
     [32,0],[30,1],[30,0],[28,1],[26,1],[25,0],[22,1],[20,0],[17,0],[16,1]
 ]
 y = [
-    '冰飲','冰飲','冰飲','冰飲','冰飲','冰飲','熱飲','熱飲','熱飲','熱飲',
-    '冰飲','冰飲','冰飲','冰飲','冰飲','冰飲','熱飲','熱飲','熱飲','熱飲',
-    '冰飲','冰飲','冰飲','熱飲','冰飲','冰飲','熱飲','熱飲','熱飲','冰飲'
+    '冰飲','冰飲','冰飲','冰飲','冰飲','冰飲','常溫','熱飲','熱飲','熱飲',
+    '冰飲','常溫','冰飲','冰飲','冰飲','冰飲','常溫','常溫','熱飲','熱飲',
+    '冰飲','冰飲','冰飲','熱飲','冰飲','冰飲','熱飲','常溫','熱飲','冰飲'
 ]
 
 # 建立模型
-model = DecisionTreeClassifier()
+# model = DecisionTreeClassifier()
+model = KNeighborsClassifier(n_neighbors=3)
 
 # 設定訓練與測試
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
 
 print(X_train)
 print(X_test)
@@ -34,5 +36,6 @@ result = model.predict(X_test)
 accuracy = accuracy_score(y_test, result)
 
 
-print(result)
-print(accuracy)
+print(f'預測答案：{result}')
+print(f'答案：{y_test}')
+print(f'正確率: {accuracy:.2%}')
