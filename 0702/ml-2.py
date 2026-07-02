@@ -15,23 +15,23 @@ X = [
     [16,0]
 ]
 y = [
-    '冰紅茶',
-    '珍珠奶茶',
-    '可樂',
-    '無糖綠茶',
-    '氣泡水',
-    '牛奶',
-    '水',
-    '冰美式',
-    '熱美式',
-    '熱拿鐵'
+    '冰飲',
+    '冰飲',
+    '冰飲',
+    '冰飲',
+    '冰飲',
+    '冰飲',
+    '熱飲',
+    '熱飲',
+    '熱飲',
+    '熱飲'
 ]
 
 # 建立模型
 model = DecisionTreeClassifier()
 
 # 設定訓練與測試
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
 
 print(X_train)
 print(X_test)
@@ -42,11 +42,11 @@ print(y_test)
 model.fit(X_train,y_train)
 
 # 預測
-result = model.predict([[24,0]])
+result = model.predict(X_test)
 
 # 正確率
 accuracy = accuracy_score(y_test, result)
 
 
 print(result)
-# print(accuracy)
+print(accuracy)
