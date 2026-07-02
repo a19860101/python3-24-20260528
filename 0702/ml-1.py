@@ -11,6 +11,7 @@ model = DecisionTreeClassifier()
 
 scores = cross_val_score(model, X, y, cv=5)
 print(scores)
+print(scores.mean())
 
 # 訓練
 model.fit(X,y)
