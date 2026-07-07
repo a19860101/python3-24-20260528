@@ -21,10 +21,5 @@ b = model.intercept_
 print("線性回歸公式：")
 print(f"y = {m:.3f}x + {b:.3f}")
 
-print()
-
-x = int(input())
-
-result = m * x + b
-
-print(result)
+y_pred = model.predict(X)
+print(y_pred)
