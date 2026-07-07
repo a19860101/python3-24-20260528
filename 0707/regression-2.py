@@ -30,7 +30,7 @@ mae = []
 
 # 誤差
 print('-' * 50)
-print(f'走路時間\t真實值\t預測值\t\t誤差絕對\t\t誤差平方誤差\t')
+print(f'走路時間\t真實值\t預測值\t誤差\t\t絕對誤差\t\t平方誤差\t')
 print('-' * 50)
 for i in range(len(X)):
     walk = X[i][0]
@@ -45,10 +45,10 @@ for i in range(len(X)):
     print(
         f'{walk}\t\t'
         f'{true_value}\t\t'
-        f'{pred_value}\t\t\t'
-        f'{error}\t\t\t'
-        f'{abs_error}\t\t\t'
-        f'{squared_error}')
+        f'{pred_value:.2f}\t'
+        f'{error:.2f}\t'
+        f'{abs_error:.2f}\t\t'
+        f'{squared_error:.2f}')
 
 print(sum(mae) / len(mae))
 
