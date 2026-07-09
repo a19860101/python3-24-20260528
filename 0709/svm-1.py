@@ -80,7 +80,6 @@ for name, model in models.items():
     mse = mean_squared_error(y_test, y_pred)
 
     # RMSE：MSE 開根號
-    # 不使用 numpy，所以改用 ** 0.5
     rmse = mse ** 0.5
 
     print(f"模型：{name}")
