@@ -16,7 +16,7 @@ X = [
 inertias = []
 
 # 測試 K = 1 到 K = 6
-for k in range(1, 6):
+for k in range(1, 7):
     model = KMeans(n_clusters=k, random_state=0)
     model.fit(X)
     inertias.append(model.inertia_)
@@ -24,9 +24,9 @@ for k in range(1, 6):
 print(inertias)
 
 # 畫出手肘圖
-# plt.plot(range(1, 7), inertias, marker='o')
-#
-# plt.xlabel("K value")
-# plt.ylabel("Inertia")
-# plt.title("Elbow Method")
-# plt.show()
+plt.plot(range(1, 7), inertias, marker='o')
+
+plt.xlabel("K value")
+plt.ylabel("Inertia")
+plt.title("Elbow Method")
+plt.show()
