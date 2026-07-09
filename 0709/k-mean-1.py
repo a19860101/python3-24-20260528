@@ -26,6 +26,8 @@ for k in range(1, 7):
     model.fit(X)
     inertias.append(model.inertia_)
 
+print(inertias)
+
 # 畫出手肘圖
 plt.plot(range(1, 7), inertias, marker='o')
 
