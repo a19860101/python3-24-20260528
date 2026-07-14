@@ -163,3 +163,31 @@ for method in methods:
 
     plt.tight_layout()
     plt.show()
+
+from sklearn.cluster import AgglomerativeClustering
+
+
+# ==================================================
+# 6. 使用 Ward 方法將顧客分成 3 群
+# ==================================================
+
+model = AgglomerativeClustering(
+    n_clusters=3,
+    linkage="ward"
+)
+
+# 使用標準化後的資料進行分群
+labels = model.fit_predict(X_scaled)
+
+print("\n每位顧客的群組編號：")
+print(labels)
+
+
+# ==================================================
+# 7. 將群組結果加入原始資料
+# ==================================================
+
+df["群組"] = labels
+
+print("\n加入群組後的完整資料：")
+print(df)
